@@ -38,8 +38,19 @@ export interface CompletionRecord {
   done: boolean
 }
 
+// A free-form to-do item, separate from the planned daily tasks.
+export interface Todo {
+  id: string
+  title: string
+  createdDate: string // yyyy-mm-dd
+  dueDate?: string // yyyy-mm-dd, optional
+  done: boolean
+  doneDate?: string
+}
+
 export interface AppState {
   completions: CompletionRecord[]
   customTasks: Task[]
+  todos: Todo[]
   settings: { startDate: string }
 }

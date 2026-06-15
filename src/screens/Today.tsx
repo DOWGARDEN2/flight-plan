@@ -1,6 +1,6 @@
-import type { Task } from '../types'
+import type { Task, Todo } from '../types'
 import { TaskCard } from '../components/TaskCard'
-import { IconPlane } from '../components/icons'
+import { IconPlane, IconCheck, IconChevron } from '../components/icons'
 import { SAT_DATE, EA_DATE, daysUntil, currentPhase, prettyDate } from '../lib/dates'
 import { tasksForDay, sortForToday } from '../lib/schedule'
 
@@ -16,12 +16,18 @@ export function Today({
   allTasks,
   today,
   isDone,
-  toggle
+  toggle,
+  todos,
+  toggleTodo,
+  goToTodo
 }: {
   allTasks: Task[]
   today: string
   isDone: (id: string) => boolean
   toggle: (id: string) => void
+  todos: Todo[]
+  toggleTodo: (id: string) => void
+  goToTodo: () => void
 }) {
   const { phase, focus } = currentPhase(today)
   const list = sortForToday(tasksForDay(allTasks, today), today)
@@ -110,13 +116,48 @@ export function Today({
           ))}
         </>
       ) : (
-        milestones.length === 0 && (
+        milestones.length === 0 &&
+        todos.length === 0 && (
           <div className="empty glass">
             <IconPlane />
             <h3>Nothing scheduled today</h3>
             <p>A rest day. Protect your sleep and come back tomorrow.</p>
           </div>
         )
+      )}
+
+      {todos.length > 0 && (
+        <>
+          <div className="section-h" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>Your to-do list</span>
+            <button className="section-link" onClick={goToTodo}>
+              See all
+              <IconChevron />
+            </button>
+          </div>
+          {todos.map((t) => (
+            <div key={t.id} className="task glass-soft">
+              <div className="task-row" style={{ cursor: 'default' }}>
+                <span className="task-cat-bar" style={{ background: 'var(--teal)' }} />
+                <button
+                  className="task-check"
+                  onClick={() => toggleTodo(t.id)}
+                  aria-label={`Mark ${t.title} done`}
+                >
+                  <IconCheck />
+                </button>
+                <div className="task-main">
+                  <div className="task-title">{t.title}</div>
+                  {t.dueDate && t.dueDate < today && (
+                    <div className="task-meta">
+                      <span className="due-pill urgent">Overdue</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </>
       )}
     </>
   )

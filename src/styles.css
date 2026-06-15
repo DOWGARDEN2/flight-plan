@@ -216,6 +216,23 @@ body {
 .cat-bar-track { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
 .cat-bar-fill { height: 100%; border-radius: 999px; transition: width 600ms cubic-bezier(0.22,1,0.36,1); }
 
+/* ---------- To-do ---------- */
+.todo-del {
+  flex: none; width: 30px; height: 30px; border-radius: 8px; border: none; background: transparent;
+  color: var(--text-faint); display: grid; place-items: center; cursor: pointer; transition: color 160ms, background 160ms;
+}
+.todo-del svg { width: 17px; height: 17px; }
+.todo-del:active { background: rgba(255,255,255,0.08); color: var(--text); }
+.todo-add-row { display: flex; gap: 10px; align-items: stretch; }
+.todo-add-row input { flex: 1; padding: 12px 14px; border-radius: var(--radius-sm); font-size: 16px; min-height: 46px;
+  background: var(--glass-strong); border: 1px solid var(--glass-border); color: var(--text); font-family: inherit; }
+.todo-add-row input:focus { outline: 2px solid var(--teal); border-color: transparent; }
+.section-link {
+  display: inline-flex; align-items: center; gap: 2px; background: none; border: none; cursor: pointer;
+  color: var(--teal); font-family: inherit; font-size: 12px; font-weight: 600; text-transform: none; letter-spacing: 0;
+}
+.section-link svg { width: 15px; height: 15px; }
+
 /* ---------- Add form ---------- */
 .field { margin-bottom: 14px; }
 .field label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; color: var(--text-dim); }

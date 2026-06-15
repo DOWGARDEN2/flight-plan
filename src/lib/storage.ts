@@ -6,6 +6,7 @@ const KEY = 'flight-plan-state-v1'
 const EMPTY: AppState = {
   completions: [],
   customTasks: [],
+  todos: [],
   settings: { startDate: todayISO() }
 }
 
@@ -17,6 +18,7 @@ export function loadState(): AppState {
     return {
       completions: parsed.completions ?? [],
       customTasks: parsed.customTasks ?? [],
+      todos: parsed.todos ?? [],
       settings: parsed.settings ?? { startDate: todayISO() }
     }
   } catch {

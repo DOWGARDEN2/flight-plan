@@ -16,6 +16,9 @@ export const IconProgress = () => (
 export const IconAdd = () => (
   <svg viewBox="0 0 24 24" {...S}><circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" /></svg>
 )
+export const IconList = () => (
+  <svg viewBox="0 0 24 24" {...S}><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17M11 6h10M11 12h10M11 18h10" /></svg>
+)
 export const IconCheck = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="#04201d" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 5 5L20 6" /></svg>
 )
