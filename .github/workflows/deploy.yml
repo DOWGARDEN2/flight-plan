@@ -39,3 +39,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # GitHub Pages was slow and the default 10-min wait aborted, leaving a
+          # stuck deployment. Give it more room and retry attempts.
+          timeout: 1200000
+          error_count: 15
